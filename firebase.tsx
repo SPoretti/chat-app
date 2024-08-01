@@ -91,6 +91,3 @@ export const listenForMessages = (callback: (messages: any[]) => void) => {
 };
 
 export { app, auth, db };
-function get(userRef: DatabaseReference) {
-  throw new Error("Function not implemented.");
-}
