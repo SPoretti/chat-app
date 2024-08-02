@@ -3,17 +3,26 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, sendMessage, listenForMessages } from "../../../firebase";
+import {
+  auth,
+  sendMessage,
+  listenForMessages,
+  getUserData,
+} from "../../../firebase";
 
 const Chat = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [message, setMessage] = useState("");
+  const [username, setUsername] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
         router.push("/sign-in");
+      } else {
+        const userData = await getUserData(user.uid);
+        setUsername(userData.username);
       }
     });
 
@@ -35,28 +44,49 @@ const Chat = () => {
   };
 
   return (
-    <div className="chat-container">
-      <div className="messages">
-        {messages.map((msg) => (
-          <div key={msg.id} className="message">
-            <p className="font-bold px-1">{msg.username}: </p>
-            <p>{msg.text}</p>
-          </div>
-        ))}
+    <div className="w-full h-full flex flex-col items-center">
+      <div className="chat-container">
+        <div className="messages">
+          {messages.map((msg) => {
+            const isCurrentUser = msg.username === username;
+            return (
+              <div
+                key={msg.id}
+                className={`w-full flex ${
+                  isCurrentUser ? "justify-end" : "justify-start"
+                }`}
+              >
+                <div
+                  className={`message ${
+                    isCurrentUser ? "bg-customBlue" : "bg-customGray"
+                  } p-2 rounded-md`}
+                >
+                  <p className="font-bold text-customRed px-1">
+                    {msg.username}:{" "}
+                  </p>
+                  <p>{msg.text}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <form onSubmit={handleSubmit} className="input-container">
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Type a message"
+            required
+            className="h-10 w-full px-4 rounded-l-full text-customBeige border border-customRed bg-transparent"
+          />
+          <button
+            type="submit"
+            className="bg-customRed h-10 w-10 rounded-r-full"
+          >
+            <i className="fas fa-paper-plane"></i>
+          </button>
+        </form>
       </div>
-      <form onSubmit={handleSubmit} className="input-container">
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type a message"
-          required
-          className="h-10 w-full px-4 rounded-l-full text-black"
-        />
-        <button type="submit" className="bg-black h-10 w-10 rounded-r-full">
-          <i className="fas fa-paper-plane"></i>
-        </button>
-      </form>
     </div>
   );
 };

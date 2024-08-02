@@ -14,7 +14,6 @@ import {
   onValue,
   query,
   orderByChild,
-  DatabaseReference,
 } from "firebase/database";
 
 // Your web app's Firebase configuration
@@ -37,7 +36,6 @@ const db = getDatabase(app);
 // Authentication functions
 export const signIn = (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password);
-  console.log(firebaseConfig);
 };
 
 export const signUp = async (
@@ -88,6 +86,16 @@ export const listenForMessages = (callback: (messages: any[]) => void) => {
     callback(messages);
   });
   return unsubscribe;
+};
+
+export const getUserData = async (userId: string) => {
+  const userRef = ref(db, `users/${userId}`);
+  const userSnapshot = await firebaseGet(userRef);
+  if (userSnapshot.exists()) {
+    return userSnapshot.val();
+  } else {
+    throw new Error(`User data not found for userId: ${userId}`);
+  }
 };
 
 export { app, auth, db };

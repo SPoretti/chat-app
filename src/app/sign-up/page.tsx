@@ -22,45 +22,49 @@ const SignUp = () => {
   };
 
   return (
-    <div className="container-div">
-      <form
-        onSubmit={handleSubmit}
-        className="w-1/2 h-1/3 flex flex-col justify-evenly items-center"
-      >
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-          required
-          className="textfield"
-        />
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-          className="textfield"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-          className="textfield"
-        />
-        <button type="submit" className="button">
-          Sign Up
-        </button>
-      </form>
-      <Link
-        href="/sign-in"
-        className="bg-purple-600 rounded-md w-1/3 h-6 flex flex-row items-center justify-center"
-      >
-        Already have an account? Sign in
-      </Link>
+    <div className="h-full w-full flex flex-col items-center justify-center">
+      <div className="container-div">
+        <h1 className="text-customRed text-4xl font-bold">Sign Up</h1>
+        <form
+          onSubmit={handleSubmit}
+          className="w-1/2 h-fit flex flex-col justify-evenly items-center"
+        >
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            required
+            className="textfield"
+          />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+            className="textfield"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+            className="textfield"
+          />
+          <button type="submit" className="button">
+            Sign Up
+          </button>
+        </form>
+        <Link
+          href="/sign-in"
+          className="text-customBeige rounded-md w-1/3 h-6 flex flex-row items-center justify-center"
+        >
+          Already have an account?
+          <p className="text-customRed font-bold">Sign In</p>
+        </Link>
+      </div>
     </div>
   );
 };
