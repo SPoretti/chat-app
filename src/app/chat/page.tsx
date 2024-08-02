@@ -14,15 +14,19 @@ const Chat = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [message, setMessage] = useState("");
   const [username, setUsername] = useState<string | null>(null);
+  const [isEmailVerified, setIsEmailVerified] = useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
         router.push("/sign-in");
+      } else if (!user.emailVerified) {
+        router.push("/verify-email");
       } else {
         const userData = await getUserData(user.uid);
         setUsername(userData.username);
+        setIsEmailVerified(true);
       }
     });
 

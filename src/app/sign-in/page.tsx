@@ -14,7 +14,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       await signIn(email, password);
-      router.push("/chat");
+      router.push("/verify-email");
     } catch (error) {
       console.error("Error signing in:", error);
     }

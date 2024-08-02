@@ -4,6 +4,8 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signOut,
 } from "firebase/auth";
 import {
   getDatabase,
@@ -53,6 +55,12 @@ export const signUp = async (
     username,
     email,
   });
+  await sendEmailVerification(userCredential.user);
+  console.log("Verification email sent.");
+};
+
+export const logout = () => {
+  return signOut(auth);
 };
 
 // Realtime Database functions
