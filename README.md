@@ -1,64 +1,81 @@
-# Chat App
+# Realtime Chat App
+
+![Next.js](https://img.shields.io/badge/Next.js-10.0.0-blue)
+![Firebase](https://img.shields.io/badge/Firebase-8.0.0-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 This is a chat application built with Next.js and Firebase.
+
+## Authors
+
+- [@sporetti](https://www.github.com/sporetti)
+
+## Color Reference
+
+| Color            | Hex                                                              |
+| ---------------- | ---------------------------------------------------------------- |
+| Custom Gray      | ![#353634](https://via.placeholder.com/10/353634?text=+) #353634 |
+| Custom Dark Gray | ![#2b2b2b](https://via.placeholder.com/10/2b2b2b?text=+) #2b2b2b |
+| Custom Red       | ![#e6324b](https://via.placeholder.com/10/e6324b?text=+) #e6324b |
+| Custom Peach     | ![#ffc6a5](https://via.placeholder.com/10/ffc6a5?text=+) #ffc6a5 |
+| Custom Beige     | ![#f2e3c6](https://via.placeholder.com/10/f2e3c6?text=+) #f2e3c6 |
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+NEXT_PUBLIC_FIREBASE_API_KEY \
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN \
+NEXT_PUBLIC_FIREBASE_PROJECT_ID \
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET \
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID \
+NEXT_PUBLIC_FIREBASE_APP_ID \
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID \
+NEXT_PUBLIC_FIREBASE_DATABASE_URL
 
 ## Features
 
 - Real-time messaging
 - User authentication
-- Responsive design
 
-## Prerequisites
+## Run Locally
 
-Make sure you have the following installed on your development machine:
+Clone the project
 
-- Node.js (version 12.0.0 or higher)
-- npm (comes with Node.js)
-- yarn (optional)
+```bash
+  git clone https://github.com/SPoretti/chat-app
+```
 
-## Getting Started
+Go to the project directory
 
-### Installation
+```bash
+  cd chat-app
+```
 
-1. Clone the repository from GitHub.
-2. Navigate to the project directory.
-3. Install the dependencies using npm or yarn.
+Install dependencies
 
-### Environment Variables
+```bash
+  npm install
+```
 
-Create a `.env.local` file in the root of your project and add the necessary environment variables for Firebase configuration.
+Start the server
 
-### Running the Development Server
+```bash
+  npm run dev
+```
 
-To start the development server, use the appropriate command for your package manager.
+## Tech Stack
 
-### Building for Production
+**Client:** React, Nextjs, TailwindCSS
 
-To create an optimized production build, use the appropriate command for your package manager.
+**Server:** Firebase services
 
-### Running in Production Mode
+## Acknowledgements
 
-To run the project in production mode, use the appropriate command for your package manager.
-
-### Linting
-
-To run the linter, use the appropriate command for your package manager.
-
-### Formatting
-
-To format the code, use the appropriate command for your package manager.
-
-## Deployment
-
-This project uses GitHub Actions for continuous deployment. The workflow file is located at `.github/workflows/nextjs.yml`.
-
-## Learn More
-
-To learn more about Next.js and Firebase, take a look at the following resources:
-
-- Next.js Documentation - learn about Next.js features and API.
-- Firebase Documentation - learn about Firebase features and API.
+- [Fontawesome](https://fontawesome.com/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [Nextjs](https://nextjs.org/)
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+[MIT](https://www.mit.edu/~amini/LICENSE.md)

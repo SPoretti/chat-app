@@ -106,4 +106,21 @@ export const getUserData = async (userId: string) => {
   }
 };
 
+export const updateUserData = async (userId: string, data: any) => {
+  const userRef = ref(db, `users/${userId}`);
+  await set(userRef, data);
+};
+
+export const getUserDataByUsername = async (username: string) => {
+  const userRef = ref(db, `users`);
+  const snapshot = await firebaseGet(userRef);
+  const users = snapshot.val();
+  for (const userId in users) {
+    if (users[userId].username === username) {
+      return { id: userId, ...users[userId] };
+    }
+  }
+  throw new Error("User not found");
+};
+
 export { app, auth, db };
